@@ -5,7 +5,7 @@ switch (window.location.hostname) {
     APIURL = "http://localhost:3003";
     break;
   case "dcb-sprint-tracker2020.herokuapp.com":
-    APIURL = "https://dcb-sprint-tracker.herokuapp.com/";
+    APIURL = "https://dcb-sprint-tracker.herokuapp.com";
 }
 
 export default APIURL;
