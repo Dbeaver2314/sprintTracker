@@ -9,6 +9,7 @@ import {
   Label,
   Modal
 } from "reactstrap";
+import APIURL from "../helpers/enviroment";
 
 const ManagerMakeTeam = props => {
   const [editName, setEditName] = useState("");
@@ -17,7 +18,7 @@ const ManagerMakeTeam = props => {
   const toggle = () => setModal(!modal);
 
   const createTeam = () => {
-    fetch("http://localhost:3003/team/add", {
+    fetch(`${APIURL}/team/add`, {
       method: "POST",
       body: JSON.stringify({
         teamName: editName,
