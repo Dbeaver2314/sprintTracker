@@ -1,12 +1,13 @@
 import React from "react";
 import { Table, Button } from "reactstrap";
 // import NewBacklog from "./NewBacklog";
+import APIURL from "../helpers/enviroment";
 
 const PersonalBacklogTable = props => {
   //
 
   const personalBacklogUpdate = backlog => {
-    fetch(`http://localhost:3003/backlog/${backlog.id}`, {
+    fetch(`${APIURL}/backlog/${backlog.id}`, {
       method: "PUT",
       body: JSON.stringify({
         status: "Complete"

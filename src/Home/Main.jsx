@@ -4,10 +4,12 @@ import BacklogTable from "./BacklogTable";
 import NewBacklog from "./NewBacklog";
 import PersonalBacklogTable from "./PersonalBacklog";
 
+import APIURL from "../helpers/enviroment";
+
 const Main = props => {
   const [backlog, setBacklog] = useState([]);
   function fetchBacklog() {
-    fetch("http://localhost:3003/backlog/", {
+    fetch(`${APIURL}/backlog/`, {
       method: "GET",
       headers: new Headers({
         "Content-Type": "application/json",

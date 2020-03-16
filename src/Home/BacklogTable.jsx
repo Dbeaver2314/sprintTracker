@@ -1,12 +1,13 @@
 import React from "react";
 import { Table, Button } from "reactstrap";
 // import NewBacklog from "./NewBacklog";
+import APIURL from "../helpers/enviroment";
 
 const BacklogTable = props => {
   //
   const deleteBacklog = backlog => {
     console.log(props);
-    fetch(`http://localhost:3003/backlog/${backlog.id}`, {
+    fetch(`${APIURL}/backlog/${backlog.id}`, {
       method: "DELETE",
       headers: new Headers({
         "Content-Type": "application/json",
@@ -16,7 +17,7 @@ const BacklogTable = props => {
   };
 
   const backlogUpdate = backlog => {
-    fetch(`http://localhost:3003/backlog/${backlog.id}`, {
+    fetch(`${APIURL}/backlog/${backlog.id}`, {
       method: "PUT",
       body: JSON.stringify({
         workingUser: localStorage.userName,

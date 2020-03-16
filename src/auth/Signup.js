@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 import ManagerMakeTeam from "./managerMakeTeam";
+import APIURL from "../helpers/enviroment";
 
 const Signup = props => {
   const [username, setUsername] = useState(""); //the Username value passed to the DB
@@ -27,7 +28,7 @@ const Signup = props => {
 
   const handleSubmit = event => {
     event.preventDefault();
-    fetch("http://localhost:3003/auth/signup", {
+    fetch(`${APIURL}/auth/signup`, {
       method: "POST",
       body: JSON.stringify({
         username: username,
@@ -52,7 +53,7 @@ const Signup = props => {
   };
 
   function joinTeam() {
-    fetch("http://localhost:3003/team/", {
+    fetch(`${APIURL}/team/`, {
       method: "GET",
       headers: new Headers({
         "Content-Type": "application/json"

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
+import APIURL from "../helpers/enviroment";
 
 const NewBacklog = props => {
   const [newItem, setNewItem] = useState("");
@@ -7,7 +8,7 @@ const NewBacklog = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    fetch("http://localhost:3003/backlog/add", {
+    fetch(`${APIURL}/backlog/add`, {
       method: "POST",
       body: JSON.stringify({
         item: newItem,
