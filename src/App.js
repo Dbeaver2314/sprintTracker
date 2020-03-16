@@ -1,26 +1,47 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "bootstrap/dist/css/bootstrap.min.css";
+import Auth from "./auth/Auth";
+import React, { useState, useEffect } from "react";
+import Main from "./Home/Main";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+  const [sessionToken, setSessionToken] = useState("");
+  const [userType, setUserType] = useState("");
+  const [userName, setUserName] = useState("");
 
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      setSessionToken(localStorage.getItem("token"));
+    }
+  }, []);
+
+  const updateToken = newToken => {
+    localStorage.setItem("token", newToken);
+    setSessionToken(newToken);
+  };
+  const setNewUserType = NewUserType => {
+    localStorage.setItem("userType", NewUserType);
+    setUserType(NewUserType);
+  };
+  const setNewUserName = NewUserName => {
+    localStorage.setItem("userName", NewUserName);
+    setUserName(NewUserName);
+  };
+  const clearToken = () => {
+    localStorage.clear();
+    setSessionToken("");
+  };
+  const protectedViews = () => {
+    return sessionToken === localStorage.getItem("token") ? (
+      <Main token={sessionToken} userType={userType} clickLogout={clearToken} />
+    ) : (
+      <Auth
+        updateToken={updateToken}
+        setNewUserType={setNewUserType}
+        setNewUserName={setNewUserName}
+      />
+    );
+  };
+
+  return <div>{protectedViews()}</div>;
+}
 export default App;
